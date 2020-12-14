@@ -1,32 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
-    const assignedClasses = [];
-    let btnClass = '';
-
-    if(props.showPersons){
-        btnClass = classes.Red
+  useEffect(() => {
+    console.log('useeffect'); 
+    //equals to componentWillUnmount
+    return () => {
+      console.log('cleanup works in useEffect')
     }
+    // http requestAnimationFrame...
+  }, []) /* [] -> se subscribe solo la 1 vez, [variable] 
+  -> cada vez que la variable cambie, sin 2 parámetro se subscribe siempre que se renderice la página*/
 
-    if (props.persons.length <= 2) {
-        assignedClasses.push(classes.red);
-    }
-    
-    if (props.persons.length <= 1) {
-        assignedClasses.push(classes.bold);
-    }
+  const assignedClasses = [];
+  let btnClass = '';
 
-    return (
-        <div>
-            <h1>{props.title}</h1>
-            <p className={assignedClasses.join(' ')}>This is really working</p>
-            <button className={btnClass} onClick={props.clicked}>
-                Toggle Persons
+  if (props.showPersons) {
+    btnClass = classes.Red
+  }
+
+  if (props.personsLength <= 2) {
+    assignedClasses.push(classes.red);
+  }
+
+  if (props.personsLength <= 1) {
+    assignedClasses.push(classes.bold);
+  }
+
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <p className={assignedClasses.join(' ')}>This is really working</p>
+      <button className={btnClass} onClick={props.clicked}>
+        Toggle Persons
                     </button>
-        </div>
-    );
+    </div>
+  );
 
 }
 
-export default cockpit
+export default React.memo(cockpit);
