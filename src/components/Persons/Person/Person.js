@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import './Person.css'
+import './Person.css';
+import PropTypes from 'prop-types';
+import Persons from '../Persons';
 
 const StyleDiv = styled.div`
     width: 60%;
@@ -25,4 +27,15 @@ const person = (props) => {
     )
 }
 
+Persons.PropTypes = {
+     click: PropTypes.func,
+     name: PropTypes.string,
+     age: PropTypes.number,
+     changed: PropTypes.func
+};
+
 export default person;
+
+
+
+
