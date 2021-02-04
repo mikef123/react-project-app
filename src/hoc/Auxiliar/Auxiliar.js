@@ -1,0 +1,1 @@
+const Auxiliariliar = (props).children;
